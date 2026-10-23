@@ -19,6 +19,10 @@ env:
 jobs:
   build:
     runs-on: "windows-2022"
+    
+    permissions:
+      id-token: "write"
+      attestations: "write"
 
     steps:
       - name: "Set up Python"
@@ -49,6 +53,12 @@ jobs:
         shell: "cmd"
         working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         run: rebuild_win.bat
+
+      # attest built artifact
+      - name: "Generate artifact attestation"
+        uses: actions/attest@v4
+        with:
+          subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }}"
 
       # upload artifact
       - name: "Upload build package"
