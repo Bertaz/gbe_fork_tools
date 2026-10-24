@@ -51,7 +51,7 @@ jobs:
       # build
       - name: "Rebuild"
         shell: "bash"
-        working-directory: "${{ env.SCRIPT_BASE_DIR }}"
+        # working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         #run: rebuild_win.bat
         run: |
           echo "built" >> $GITHUB_OUTPUT
