@@ -64,7 +64,8 @@ jobs:
         shell: bash
         run: |
           cat "$GITHUB_ARTIFACTS_LIST";
-          for substep in ${{ steps }}; do echo $substep; done
+          for substep in ${{ steps.* }}; do echo $substep; done;
+          echo ${{ steps.*.outputs }}; echo ${{ steps.*.outcome }}; echo ${{ steps.*.outputs[0] }}; echo ${{ steps.*.outputs.* }}
         if: ${{ !failure() }}
 
       # # upload artifact
