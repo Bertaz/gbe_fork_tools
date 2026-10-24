@@ -52,8 +52,7 @@ jobs:
 
       # build
       - name: "Rebuild"
-        shell: "bash"
-        if: ${{ false }}
+        shell: "cmd"
         id: "build"
         working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         run: rebuild_win.bat
