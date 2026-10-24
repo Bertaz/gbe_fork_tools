@@ -66,8 +66,8 @@ jobs:
         run: |
           cat "$GITHUB_ARTIFACTS_LIST";
           for substep in "${{ steps.* }}"; do echo "$substep"; done
+          echo "steps real: ${{ fromJson(steps.first-step.outputs) }}"
         #echo "${{ toJSON(steps) }}"; echo n
-        #echo "steps real: ${{ fromJson(steps.first-step.outputs) }}"
         if: ${{ !failure() }}
 
       # # upload artifact
