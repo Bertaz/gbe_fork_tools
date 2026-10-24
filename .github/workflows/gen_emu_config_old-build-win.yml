@@ -62,12 +62,12 @@ jobs:
         #with:
         #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
         run: |
-          echo $steps $STEPS ${{ steps }}
+          echo ${{ steps.* }}
         if: ${{ !failure() }}
 
       # upload artifact
       - name: "Upload build package"
-        if: ${{ !failure() || false }}
+        if: ${{ false }}
         uses: actions/upload-artifact@v4
         with:
           name: "${{ env.ARTIFACT_NAME }}"
