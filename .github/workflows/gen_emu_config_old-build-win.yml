@@ -56,9 +56,11 @@ jobs:
 
       # attest built artifact
       - name: "Generate artifact attestation"
-        uses: actions/attest@v4
-        with:
-          subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }}"
+        #uses: actions/attest@v4
+        #with:
+        #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
+        run: echo "stepsFull=${{steps}}" >> $GITHUB_OUTPUT
+        if: !failure()
 
       # upload artifact
       - name: "Upload build package"
