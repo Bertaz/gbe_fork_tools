@@ -51,6 +51,7 @@ jobs:
       # build
       - name: "Rebuild"
         shell: "bash"
+        id: "first-step"
         # working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         #run: rebuild_win.bat
         run: |
@@ -69,7 +70,7 @@ jobs:
           cat "$GITHUB_ARTIFACTS_LIST";
           for substep in ${{ steps.* }}; do echo $substep; done;
           echo ${{ toJSON(steps) }}; echo ${{ toJSON(steps.*.outputs) }}; echo ${{ toJSON(steps[0].outcome) }}; echo ${{ toJSON(steps.*.outputs[0]) }}; echo ${{ toJSON(steps.*.outputs.*) }}; echo \n;
-
+          echo "steps real: ${{ steps.first-step.outputs }}"
           echo "steps as var: $stepsVar"; echo "steps.*.outputs as var: $stepsOutVar"
         if: ${{ !failure() }}
 
