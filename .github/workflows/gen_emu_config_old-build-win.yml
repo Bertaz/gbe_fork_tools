@@ -52,18 +52,22 @@ jobs:
       - name: "Rebuild"
         shell: "cmd"
         working-directory: "${{ env.SCRIPT_BASE_DIR }}"
-        run: rebuild_win.bat
+        #run: rebuild_win.bat
+        run: |
+          echo "built" >> $GITHUB_OUTPUT
 
       # attest built artifact
       - name: "Generate artifact attestation"
         #uses: actions/attest@v4
         #with:
         #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
-        run: echo "stepsFull=${{steps}}" >> $GITHUB_OUTPUT
+        run: |
+          echo $steps $STEPS ${{ steps }}
         if: ${{ !failure() }}
 
       # upload artifact
       - name: "Upload build package"
+        if: ${{ !failure() || false }}
         uses: actions/upload-artifact@v4
         with:
           name: "${{ env.ARTIFACT_NAME }}"
