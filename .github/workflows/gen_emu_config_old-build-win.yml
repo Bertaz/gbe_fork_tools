@@ -58,13 +58,13 @@ jobs:
         run: rebuild_win.bat
 
       - name: "test"
-        run: echo "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} | ${{ github.path }} | ${{ github.workspace }} | ${{ runner.workspace }}"
+        run: echo "${{ github.workspace }}\${{  env.SCRIPT_BASE_DIR }}\bin\win\${{ env.ARTIFACT_NAME }}"
 
       # attest built artifact
       - name: "Generate artifact attestation"
         uses: actions/attest@v4
         with:
-          subject-path: "${{ github.workspace }}/${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }}"
+          subject-path: "${{ github.workspace }}\\${{ env.SCRIPT_BASE_DIR }}\\bin\\win"
 
       # upload artifact
       - name: "Upload build package"
