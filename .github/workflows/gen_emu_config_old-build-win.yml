@@ -57,15 +57,8 @@ jobs:
         working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         run: rebuild_win.bat
 
-      # attest built artifact
-      - name: "Generate artifact attestation"
-        uses: actions/attest@v4
-        with:
-          subject-path: "${{ github.workspace }}\\${{ env.SCRIPT_BASE_DIR }}\\bin\\win\\${{ env.ARTIFACT_NAME }}"
-
       # upload artifact
       - name: "Upload build package"
-        if: ${{ false }}
         uses: actions/upload-artifact@v4
         with:
           name: "${{ env.ARTIFACT_NAME }}"
@@ -73,3 +66,9 @@ jobs:
           if-no-files-found: "error"
           compression-level: 9
           retention-days: 1
+
+      # attest built artifact
+      - name: "Generate artifact attestation"
+        uses: actions/attest@v4
+        # with:
+        #   subject-path: "${{ github.workspace }}\\${{ env.SCRIPT_BASE_DIR }}\\bin\\win\\${{ env.ARTIFACT_NAME }}"
