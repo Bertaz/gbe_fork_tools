@@ -60,7 +60,7 @@ jobs:
         #with:
         #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
         run: echo "stepsFull=${{steps}}" >> $GITHUB_OUTPUT
-        if: !failure()
+        if: ${{ !failure() }}
 
       # upload artifact
       - name: "Upload build package"
