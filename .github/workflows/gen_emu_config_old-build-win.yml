@@ -54,7 +54,7 @@ jobs:
         # working-directory: "${{ env.SCRIPT_BASE_DIR }}"
         #run: rebuild_win.bat
         run: |
-          echo "built" >> $GITHUB_OUTPUT
+          echo "TEST_NOW=built" >> "$GITHUB_OUTPUT"
 
       # attest built artifact
       - name: "Generate artifact attestation"
@@ -63,6 +63,7 @@ jobs:
         #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
         shell: bash
         run: |
+          cat "$GITHUB_ARTIFACTS_LIST";
           for substep in ${{ steps }}; do echo $substep; done
         if: ${{ !failure() }}
 
