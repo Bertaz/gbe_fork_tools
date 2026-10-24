@@ -66,7 +66,7 @@ jobs:
         run: |
           cat "$GITHUB_ARTIFACTS_LIST";
           echo "${{ toJSON(steps) }}"; echo `n;
-          echo "steps real: ${{ fromJson(steps.first-step.outputs) }}";
+          echo "steps real: ${{ toJson(steps.first-step.outputs) }}";
         if: ${{ !failure() }}
 
       # # upload artifact
