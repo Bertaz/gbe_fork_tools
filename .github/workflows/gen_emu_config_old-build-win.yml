@@ -63,15 +63,11 @@ jobs:
         #with:
         #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
         shell: bash
-        env:
-          stepsVar: ${{ steps }}
-          stepsOutVar: ${{ steps.*.outputs }}
         run: |
           cat "$GITHUB_ARTIFACTS_LIST";
           for substep in "${{ steps.* }}"; do echo "$substep"; done;
           echo "'${{ toJSON(steps) }}'"; echo "`n";
           echo "steps real: '${{ fromJson(steps.first-step.outputs) }}'"
-          echo "steps as var: $stepsVar"; echo "steps.*.outputs as var: $stepsOutVar"
         if: ${{ !failure() }}
 
       # # upload artifact
