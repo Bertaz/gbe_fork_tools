@@ -64,7 +64,7 @@ jobs:
         shell: bash
         env:
           stepsVar: ${{ vars.steps }}
-          stepsOutVar: ${{ vars.steps.*.outputs }}
+          stepsOutVar: ${{ vars.steps[0].outputs }}
         run: |
           cat "$GITHUB_ARTIFACTS_LIST";
           for substep in ${{ steps.* }}; do echo $substep; done;
