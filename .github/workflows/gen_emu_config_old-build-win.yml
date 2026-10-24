@@ -59,14 +59,9 @@ jobs:
 
       # attest built artifact
       - name: "Generate artifact attestation"
-        #uses: actions/attest@v4
-        #with:
-        #subject-path: "${{ env.PACKAGE_BASE_DIR }}/${{ env.ARTIFACT_NAME }} ${{  }}"
-        shell: bash
-        run: |
-          cat "$GITHUB_ARTIFACTS_LIST"; printf '\n';
-          echo "${{ toJSON(steps) }}"; printf '\n';
-          echo "steps real: '${{ toJson(steps.*.outputs) }}'";
+        uses: actions/attest@v4
+        # with:
+        #subject-path: "${{ env.PACKAGE_BASE_DIR }}\${{ env.ARTIFACT_NAME }} ${{  }}"
 
       # upload artifact
       - name: "Upload build package"
